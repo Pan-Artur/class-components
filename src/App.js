@@ -6,9 +6,12 @@ class App extends Component {
   state = {
     text: "text",
     score: 0,
+    childMessage: "",
   }
 
   increment = () => {
+    // this.state.text = "textCopy"; - так робити не можна
+
     this.setState((prevState) => {
       return (
         {
@@ -42,6 +45,10 @@ class App extends Component {
     console.log("decrement");
   }
 
+  getMessage = (message) => {
+    this.setState({childMessage: message});
+  }
+
   render(){
     console.log(this.state.text);
 
@@ -49,7 +56,7 @@ class App extends Component {
       <div className="App">
         <p>{this.state.text}</p>
         <h3>{this.state.score}</h3>
-        <Counter addScore={this.increment} remScore={this.decrement} number={0} />
+        <Counter addScore={this.increment} remScore={this.decrement} number={0} getMessage={this.getMessage}/>
       </div>
     );
   }
